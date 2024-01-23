@@ -1,5 +1,8 @@
 # Yeasily
-<img src="images/cover.png" alt="cover image" width="400" height="400"><br>
+<div style="text-align:center;">
+    <img src="images/cover.png" alt="cover image" width="400" height="400">
+</div>
+    <br>
 Yeasily is a CLI utility to effortlessly manage and enhance audio files by intelligently populating metadata. Yeasily enhances the aesthetics and completeness of your digital music library, 
 
 ## Features
