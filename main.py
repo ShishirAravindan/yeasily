@@ -75,8 +75,10 @@ def setMetadata(metadata:SongMetadata):
 
     audio.tag.title, audio.tag.artist  = metadata.title, metadata.artist
     
-    response = urllib.request.urlopen(f"{metadata.thumbnailURL}")
-    imagedata = response.read()
+    # response = urllib.request.urlopen(f"{metadata.thumbnailURL}")
+    # imagedata = response.read()
+
+    imagedata = open(metadata.thumbnailURL, "rb").read()
 
     audio.tag.images.set(3, imagedata, "image/jpeg", u"cover")
     

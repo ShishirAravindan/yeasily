@@ -1,5 +1,7 @@
 raw/*
+images/*
 music/*
 yeasily
+urls.txt
 *.pyc
 .*
