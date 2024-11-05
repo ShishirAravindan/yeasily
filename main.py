@@ -2,11 +2,7 @@ from pytube import YouTube
 from objects import SongMetadata, extractAndResizeThumbnail, getLyrics
 import subprocess
 import eyed3
-import urllib.request
-from PIL import Image
-from io import BytesIO
 import argparse
-from whisper import Whisper
 
 def main():
     args = parse_args()
@@ -30,7 +26,7 @@ def addSongToLibrary(URL: str):
     setMetadata(metadata)
     print("Metadata Updated.")
 
-def extractSongMetadata(URL:str) -> SongMetadata
+def extractSongMetadata(URL:str) -> SongMetadata:
     YouTubeVideo = YouTube(URL)
     metadata = SongMetadata(YouTubeVideo.title, YouTubeVideo.author, 
                             YouTubeVideo.thumbnail_url, YouTubeVideo.length)
