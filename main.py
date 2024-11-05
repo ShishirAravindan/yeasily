@@ -1,13 +1,12 @@
-#!/Users/shishiraravindan/Documents/coding/yeasily/.musicVenv/bin/python
-
 from pytube import YouTube
-from objects import SongMetadata
+from objects import SongMetadata, extractAndResizeThumbnail, getLyrics
 import subprocess
 import eyed3
 import urllib.request
 from PIL import Image
 from io import BytesIO
 import argparse
+from whisper import Whisper
 
 def main():
     args = parse_args()
@@ -31,15 +30,14 @@ def addSongToLibrary(URL: str):
     setMetadata(metadata)
     print("Metadata Updated.")
 
-
-def extractSongMetadata(URL:str) -> SongMetadata:
+def extractSongMetadata(URL:str) -> SongMetadata
     YouTubeVideo = YouTube(URL)
     metadata = SongMetadata(YouTubeVideo.title, YouTubeVideo.author, 
                             YouTubeVideo.thumbnail_url, YouTubeVideo.length)
     metadata.title = metadata.title.replace('/', ' ')
     return metadata
 
-def downloadMP4(URL):
+def downloadMP4(URL:str):
     YouTubeVideo = YouTube(URL)
     try:
         YouTubeVideo.streams.filter(progressive=True, 
@@ -74,17 +72,13 @@ def setMetadata(metadata:SongMetadata):
         return
 
     audio.tag.title, audio.tag.artist  = metadata.title, metadata.artist
-    
-    # response = urllib.request.urlopen(f"{metadata.thumbnailURL}")
-    # imagedata = response.read()
+    audio.tag.lyrics = getLyrics(f"music/{metadata.title}.mp3")
 
-    imagedata = open(metadata.thumbnailURL, "rb").read()
-
+    imagedata = extractAndResizeThumbnail(metadata.thumbnailURL)
     audio.tag.images.set(3, imagedata, "image/jpeg", u"cover")
     
     audio.tag.save()
     
-
 def parse_args():
     parser = argparse.ArgumentParser(description="CLI utility to download MP3 file")
     
