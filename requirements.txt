@@ -3,3 +3,4 @@ pytube
 Pillow
 Argparse
 openai-whisper
+opencv-python
