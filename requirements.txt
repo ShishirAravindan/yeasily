@@ -2,3 +2,4 @@ eyed3
 pytube
 Pillow
 Argparse
+openai-whisper

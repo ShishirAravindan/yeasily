@@ -1,7 +1,5 @@
-raw/*
-images/*
-music/*
+raw
+music
 yeasily
 urls.txt
-*.pyc
-.*
+__pycache__
